@@ -143,13 +143,18 @@ $(function () {
     }
 
      // 都道府県のチェック
-     $('#prefecture').blur(function() {                     //セレクトボックスのフォーカスが外れたとき
-      // エラーあり
-      $('#prefecture').css('background-color', '#f79999');
-      error = true;
-      // エラーなし
-      $('#prefecture').css('background-color', '#fafafa');
-      });
+     $(document).ready(function(){                           //セレクトボックスのフォーカスが外れたとき(InputCheck有)
+      function inputCheck() {
+        if ($('#prefecture').val() === '') {
+          $('#prefecture').css('background-color', '#f79999');
+        } else {
+          $('#prefecture').css('background-color', '#fafafa');
+        }  
+     }
+
+     $('#prefecture').blur(inputCheck);
+    });
+    
       
       if ($('#prefecture').val() == '') {                     //送信ボタンをクリックしたとき
         // エラーあり
